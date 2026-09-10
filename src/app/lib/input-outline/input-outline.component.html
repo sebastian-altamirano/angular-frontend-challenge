@@ -1,5 +1,9 @@
 <ng-container *ngIf="control">
+  <label *ngIf="a11yLabel" [for]="id" class="sr-only">
+    {{ a11yLabel }}
+  </label>
   <input
+    [id]="id"
     [type]="type"
     [formControl]="control"
     [class.invalid-input]="control.touched && control.errors"

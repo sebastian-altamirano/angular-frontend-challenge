@@ -12,11 +12,11 @@ button {
 }
 
 .text-razon-social {
-  font-size: 18px;
+  font-size: var(--font-size-lg);
   width: 100%;
 }
 
 .text-cuit {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   width: 100%;
 }

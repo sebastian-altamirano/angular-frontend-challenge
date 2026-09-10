@@ -1,4 +1,5 @@
 <button
+  [disabled]="isDisabled"
   [type]="type"
   class="btn-primary font-secondary"
   (click)="onClick.emit($event)"

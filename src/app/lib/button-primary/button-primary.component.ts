@@ -6,6 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./button-primary.component.scss'],
 })
 export class ButtonPrimaryComponent {
+  @Input() isDisabled = false;
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
   @Output() onClick: EventEmitter<MouseEvent> = new EventEmitter();
 }

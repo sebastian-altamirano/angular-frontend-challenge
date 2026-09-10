@@ -1,0 +1,43 @@
+<app-content-container>
+  <section class="login-content" aria-labelledby="login-title">
+    <header class="login-header">
+      <h1 class="login-title font-primary" id="login-title">Banca Argentina</h1>
+      <p class="login-description font-secondary">
+        Ingrese sus datos para empezar a operar.
+      </p>
+    </header>
+
+    <app-alert *ngIf="errors.length" class="form-alert">
+      <p *ngFor="let error of errors" class="alert-message">{{ error }}</p>
+    </app-alert>
+
+    <form
+      class="login-form"
+      novalidate
+      [attr.aria-busy]="isSubmitting"
+      [formGroup]="form"
+      (ngSubmit)="submit()"
+    >
+      <app-input-outline
+        a11yLabel="Correo electrónico"
+        class="login-input"
+        id="email"
+        placeholder="Correo"
+        type="email"
+        [control]="emailControl"
+      ></app-input-outline>
+      <app-input-outline
+        a11yLabel="Clave"
+        class="login-input"
+        id="password"
+        placeholder="Clave"
+        type="password"
+        [control]="passwordControl"
+      ></app-input-outline>
+
+      <app-button-primary class="login-submit" type="submit" [isDisabled]="isSubmitting">
+        {{ isSubmitting ? 'Ingresando...' : 'Ingresar' }}
+      </app-button-primary>
+    </form>
+  </section>
+</app-content-container>

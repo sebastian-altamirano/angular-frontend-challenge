@@ -1,0 +1,12 @@
+:host {
+  display: block;
+}
+
+.alert {
+  background-color: var(--error-background);
+  border: 1px solid var(--error);
+  border-radius: var(--border-radius-md);
+  color: var(--error);
+  font-size: var(--font-size-sm);
+  padding: var(--space-px-2) var(--space-px-3);
+}

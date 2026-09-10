@@ -1,13 +1,18 @@
 input {
   background-color: transparent;
   border: none;
+  box-sizing: border-box;
   color: var(--black);
   outline: 2px solid #474747;
   padding: 8px 16px;
-  border-radius: 8px;
+  border-radius: var(--border-radius-lg);
   width: 100%;
   &:focus {
     outline: 2px solid var(--primary);
     color: var(--primary);
+  }
+
+  &.invalid-input {
+    outline-color: var(--error);
   }
 }
