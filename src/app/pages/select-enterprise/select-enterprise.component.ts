@@ -1,8 +1,9 @@
 import { AuthSessionService } from '@/core/services/auth-session.service';
 import { ModalAsideComponent } from '@/lib';
 import { EnterpriseEntity } from '@/models/entities/enterprise.entity';
-import { TransferenciasNavigationState } from '@/pages/transferencias/transferencias.model';
+import { TransferenciasQueryParams } from '@/pages/transferencias/transferencias.model';
 import { EnterprisesService } from '@/services/enterprises.service';
+import { encodeObjectToBase64 } from '@/utils/base64-object.util';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -45,11 +46,11 @@ export class SelectEnterpriseComponent implements OnInit {
   }
 
   selectEnterprise(enterprise: EnterpriseEntity): void {
-    const state: TransferenciasNavigationState = { enterprise };
+    const queryParams: TransferenciasQueryParams = {
+      enterprise: encodeObjectToBase64(enterprise),
+    };
 
-    this.router.navigateByUrl('/transferencias', {
-      state,
-    });
+    this.router.navigate(['/transferencias'], { queryParams });
   }
 
   trackByEnterpriseId(_index: number, enterprise: EnterpriseEntity): number {

@@ -3,7 +3,7 @@
 ## Funcionalidad
 
 - El botón de submit del formulario de login permanece habilitado aunque el formulario tenga errores. La validación ocurre al intentar enviarlo y los mensajes se muestran juntos en el alert superior, tal como pide la historia de usuario. Así el usuario siempre puede activar el feedback y entender qué debe corregir; el botón solo se deshabilita durante la petición para evitar envíos duplicados. Ver [NN/g](https://www.nngroup.com/videos/why-disabled-buttons-hurt-ux-and-how-to-fix-them/) y [Smashing Magazine](https://www.smashingmagazine.com/2021/08/frustrating-design-patterns-disabled-buttons/).
-- La empresa seleccionada se envía a transferencias mediante un estado de navegación y se recupera durante la construcción de la página. Si un acceso directo o una recarga no aporta ese estado, se conserva la sesión y se muestra el error de recuperación, sin enviar una solicitud sin CUIT ni forzar un nuevo login. Para empresas se adopta `cuit`, pese a que `api.yaml` declara `cuil`, porque el requerimiento funcional, la entidad, los datos y los handlers reales coinciden en `cuit`.
+- Para empresas se adopta `cuit`, pese a que `api.yaml` declara `cuil`, porque el requerimiento funcional, la entidad, los datos y los handlers reales coinciden en `cuit`.
 
 ## Estructura y estilos
 

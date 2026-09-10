@@ -1,15 +1,16 @@
 import { EnterpriseEntity } from '@/models/entities/enterprise.entity';
 import { TransferenciaEntity } from '@/models/entities/transferencia.entity';
 import { TransferenciasService } from '@/services/transferencias.service';
+import { decodeObjectFromBase64 } from '@/utils/base64-object.util';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   OnInit,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { finalize } from 'rxjs';
-import { TransferenciasNavigationState } from './transferencias.model';
+import { TransferenciasQueryParams } from './transferencias.model';
 
 @Component({
   selector: 'app-transferencias',
@@ -24,18 +25,21 @@ export class TransferenciasComponent implements OnInit {
   hasError = false;
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private cdRef: ChangeDetectorRef,
-    private router: Router,
     private transferenciasService: TransferenciasService,
   ) {
-    const navigationState = this.router.getCurrentNavigation()?.extras
-      .state as TransferenciasNavigationState | undefined;
+    const queryParams = this.activatedRoute.snapshot.queryParams as TransferenciasQueryParams;
 
-    this.enterprise = navigationState?.enterprise;
+    try {
+      this.enterprise = decodeObjectFromBase64<EnterpriseEntity>(queryParams.enterprise);
+    } catch {
+      this.hasError = true;
+    }
   }
 
   ngOnInit(): void {
-    if (!this.enterprise?.cuit) {
+    if (this.hasError || !this.enterprise?.cuit) {
       this.hasError = true;
       return;
     }
