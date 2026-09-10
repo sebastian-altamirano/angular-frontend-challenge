@@ -1,0 +1,46 @@
+<app-content-container>
+  <section
+    class="transferencias-content"
+    aria-labelledby="transferencias-title"
+  >
+    <h1 class="sr-only" id="transferencias-title">
+      Transferencias de {{ enterprise?.razonSocial }}
+    </h1>
+
+    <app-alert
+      *ngIf="hasError; else transferenciasTable"
+      class="transferencias-alert"
+    >
+      <p class="alert-message">No se pudieron recuperar las transferencias, intentelo de nuevo más tarde</p>
+    </app-alert>
+
+    <ng-template #transferenciasTable>
+      <app-table-custom>
+        <tr table-header>
+          <th scope="col">Transacción</th>
+          <th scope="col">Destinatario</th>
+          <th scope="col">Importe</th>
+          <th scope="col">Referencia</th>
+          <th scope="col">Estado</th>
+        </tr>
+
+        <ng-container table-body>
+          <tr
+            *ngFor="
+              let transferencia of transferencias;
+              trackBy: trackByNroTransaccion
+            "
+          >
+            <td>{{ transferencia.nroTransaccion }}</td>
+            <td>{{ transferencia.destinatario }}</td>
+            <td>
+              {{ transferencia.importe | currency: 'ARS':'symbol':'1.2-2' }}
+            </td>
+            <td>{{ transferencia.referencia }}</td>
+            <td>{{ transferencia.estado | transferenciaEstado }}</td>
+          </tr>
+        </ng-container>
+      </app-table-custom>
+    </ng-template>
+  </section>
+</app-content-container>

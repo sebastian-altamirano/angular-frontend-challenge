@@ -1,5 +1,6 @@
 import { AuthenticatedGuard } from '@/core/guards/authenticated.guard';
 import { SelectEnterpriseComponent } from '@/pages/select-enterprise/select-enterprise.component';
+import { TransferenciasComponent } from '@/pages/transferencias/transferencias.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthenticatedLayoutComponent } from './authenticated-layout.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
       },
       {
         path: 'transferencias',
+        component: TransferenciasComponent,
       },
     ],
   },

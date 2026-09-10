@@ -1,6 +1,7 @@
 import { AuthSessionService } from '@/core/services/auth-session.service';
 import { ModalAsideComponent } from '@/lib';
 import { EnterpriseEntity } from '@/models/entities/enterprise.entity';
+import { TransferenciasNavigationState } from '@/pages/transferencias/transferencias.model';
 import { EnterprisesService } from '@/services/enterprises.service';
 import {
   ChangeDetectionStrategy,
@@ -44,8 +45,10 @@ export class SelectEnterpriseComponent implements OnInit {
   }
 
   selectEnterprise(enterprise: EnterpriseEntity): void {
+    const state: TransferenciasNavigationState = { enterprise };
+
     this.router.navigateByUrl('/transferencias', {
-      state: { enterprise },
+      state,
     });
   }
 
