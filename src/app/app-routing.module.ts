@@ -4,11 +4,21 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     loadChildren: () =>
       import('@/layouts/auth/auth-layout.module').then(
         (module) => module.AuthLayoutModule
       ),
+  },
+  {
+    path: '',
+    loadChildren: () =>
+      import('@/layouts/authenticated/authenticated-layout.module').then(
+        (module) => module.AuthenticatedLayoutModule
+      ),
+  },
+  {
+    path: '**',
+    redirectTo: '',
   },
 ];
 

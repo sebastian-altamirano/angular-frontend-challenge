@@ -1,0 +1,30 @@
+<app-modal-aside #enterpriseModal a11yLabel="Elegir empresa">
+  <section class="enterprise-selector" aria-labelledby="select-enterprise-title">
+    <header class="enterprise-header">
+      <h1
+        #modalInitialFocus
+        class="page-title font-primary"
+        id="select-enterprise-title"
+        tabindex="-1"
+      >
+        Elegir empresa
+      </h1>
+      <p class="page-description font-secondary">
+        Seleccioná la empresa con la que querés operar
+      </p>
+    </header>
+
+    <ul class="enterprise-list">
+      <li
+        *ngFor="let enterprise of enterprises; trackBy: trackByEnterpriseId"
+        class="enterprise-item"
+      >
+        <app-enterprise-detail
+          [cuit]="enterprise.cuit"
+          [razonSocial]="enterprise.razonSocial"
+          (selected)="selectEnterprise(enterprise)"
+        ></app-enterprise-detail>
+      </li>
+    </ul>
+  </section>
+</app-modal-aside>

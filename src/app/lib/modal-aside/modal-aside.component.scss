@@ -14,8 +14,13 @@
 
 .modal-aside {
   background-color: var(--white);
-  padding-top: 25px;
   height: 100%;
-  width: 350px;
-  max-width: 100dvw;
+  width: 22rem;
+  overflow-y: auto;
+}
+
+@media (max-width: 36rem) {
+  .modal-aside {
+    width: 100%;
+  }
 }

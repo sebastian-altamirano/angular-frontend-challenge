@@ -3,6 +3,7 @@
 ## Funcionalidad
 
 - El botón de submit del formulario de login permanece habilitado aunque el formulario tenga errores. La validación ocurre al intentar enviarlo y los mensajes se muestran juntos en el alert superior, tal como pide la historia de usuario. Así el usuario siempre puede activar el feedback y entender qué debe corregir; el botón solo se deshabilita durante la petición para evitar envíos duplicados. Ver [NN/g](https://www.nngroup.com/videos/why-disabled-buttons-hurt-ux-and-how-to-fix-them/) y [Smashing Magazine](https://www.smashingmagazine.com/2021/08/frustrating-design-patterns-disabled-buttons/).
+- La empresa seleccionada se envía a transferencias mediante el estado de navegación. Angular la escribe en la entrada de `history.state`, por lo que puede recuperarla al recorrer el historial dentro de la SPA. En Angular 13, una recarga completa inicia una navegación que reemplaza ese estado; transferencias deberá tratar la ausencia de empresa como una entrada inválida. Para empresas se adopta `cuit`, pese a que `api.yaml` declara `cuil`, porque el requerimiento funcional, la entidad, los datos y los handlers reales coinciden en `cuit`.
 
 ## Estructura y estilos
 

@@ -6,8 +6,12 @@
   --primary-dark: #000d14;
   --primary: #00283d;
   --primary-light: #005a8c;
+
   --error: #b42318;
   --error-background: #fff5f5;
+
+  --border-subtle: #a8a8a8;
+
   --white: #fff;
   --black: #000;
 
@@ -60,6 +64,21 @@ app-root {
 
 .font-secondary {
   font-family: "Mulish", sans-serif;
+}
+
+.page-title {
+  color: var(--primary);
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-block: 0 var(--space-px-2);
+}
+
+.page-description {
+  color: var(--primary-dark);
+  font-size: var(--font-size-base);
+  line-height: 1.4;
+  margin-block: 0;
 }
 
 .sr-only {

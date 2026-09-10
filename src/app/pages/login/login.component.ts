@@ -1,4 +1,5 @@
 import { AuthEntity } from '@/models/entities/auth.entity';
+import { AuthSessionService } from '@/core/services/auth-session.service';
 import { getApiErrorMessages } from '@/utils/api-error-messages.util';
 import { AuthService } from '@/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -37,8 +38,9 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private authSessionService: AuthSessionService,
     private router: Router,
-    private changeDetectorRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef
   ) {}
 
   submit(): void {
@@ -64,7 +66,7 @@ export class LoginComponent {
   }
 
   private handleSuccess(auth: AuthEntity): void {
-    sessionStorage.setItem('auth', JSON.stringify(auth));
+    this.authSessionService.saveAuth(auth);
     this.router.navigateByUrl('/seleccionar-empresa');
   }
 
@@ -74,7 +76,7 @@ export class LoginComponent {
       ? apiErrors
       : ['Error genérico del sistema, vuelva a intentarlo más tarde'];
     this.isSubmitting = false;
-    this.changeDetectorRef.markForCheck();
+    this.cdRef.markForCheck();
   }
 
   private getApiErrors(error: unknown): string[] {

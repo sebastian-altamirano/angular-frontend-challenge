@@ -1,6 +1,6 @@
-<button type="button" (click)="handlerCuit.emit(cuit)">
-  <p class="text-razon-social font-secondary">{{ razonSocial }}</p>
-  <p class="text-cuit font-primary">
+<button type="button" (click)="selected.emit()">
+  <span class="text-razon-social font-secondary">{{ razonSocial }}</span>
+  <span class="text-cuit font-primary">
     CUIT: <b>{{ cuit }}</b>
-  </p>
+  </span>
 </button>
