@@ -1,5 +1,16 @@
 # Decisiones técnicas
 
+## Cómo probar
+
+- Camino exitoso: cualquier correo válido y una clave de 8 a 16 caracteres, por ejemplo `usuario@correo.com` / `12345678`.
+- Error `406`: usar `error@correo.com` con una clave válida, o usar `123456789` como clave.
+
+## Arquitectura
+
+- Se separaron las rutas públicas y autenticadas en layouts distintos para mantener responsabilidades claras. `pathMatch: 'full'` evita cargar el módulo de login al visitar una ruta autenticada y `canLoad` evita descargar el módulo autenticado cuando no hay sesión.
+- La ruta de transferencias recibe la empresa completa como JSON codificado en Base64 dentro de un query param tipado. Esto permite recargar o guardar la URL.
+- `canActivateChild` comprueba que exista una sesión al navegar entre pantallas autenticadas. Si una petición recibe `401`, el interceptor es el lugar adecuado para limpiar la sesión y redirigir, porque el guard no puede conocer por sí solo si el token sigue siendo válido en el servidor.
+
 ## Funcionalidad
 
 - El botón de submit del formulario de login permanece habilitado aunque el formulario tenga errores. La validación ocurre al intentar enviarlo y los mensajes se muestran juntos en el alert superior, tal como pide la historia de usuario. Así el usuario siempre puede activar el feedback y entender qué debe corregir; el botón solo se deshabilita durante la petición para evitar envíos duplicados. Ver [NN/g](https://www.nngroup.com/videos/why-disabled-buttons-hurt-ux-and-how-to-fix-them/) y [Smashing Magazine](https://www.smashingmagazine.com/2021/08/frustrating-design-patterns-disabled-buttons/).
