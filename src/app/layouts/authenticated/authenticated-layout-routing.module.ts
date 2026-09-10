@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: '',
     component: AuthenticatedLayoutComponent,
-    canActivate: [AuthenticatedGuard],
+    canActivateChild: [AuthenticatedGuard],
     children: [
       {
         path: 'seleccionar-empresa',
